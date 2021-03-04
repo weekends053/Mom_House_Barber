@@ -17,6 +17,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<?php include("banner/banner.php"); ?>
 	<center>
 		<?php
+		echo anchor('Booking_Con/Booking', 'จองคิว') . br(2);
 		echo anchor('Customer_Con/show_barber', 'ดูโปรไฟล์ช่าง') . br(2);
 		echo anchor('Customer_Con/show_profile', 'ดูโปรไฟล์') . br(2);
 		echo anchor('Login_Con/logout', 'ออกจากระบบ');

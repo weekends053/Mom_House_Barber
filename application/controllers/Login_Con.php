@@ -28,7 +28,8 @@ class Login_Con extends CI_Controller
     {
         $this->form_validation->set_rules('Username', 'รหัสผู้ใช้', 'required|min_length[6]'); //สร้างกฏสำหรับ Username 'required'คือต้องไม่เป็นค่าว่าง
         $this->form_validation->set_rules('Password', 'รหัสผ่าน', 'required|min_length[6]');  //สร้างกฏสำหรับ Password 'required'คือต้องไม่เป็นค่าว่าง
-        $this->form_validation->set_error_delimiters('<font color=red>', '</font>');
+        //$this->form_validation->set_error_delimiters('<font color=red>', '</font>');
+        $this->form_validation->set_message('required',' %s ต้องไม่เป็นค่าว่าง,กรุณาลองอีกครั้ง');
         if ($this->input->post('btnLogin')) //มีหารคลิกปุ่ม เข้าสู่ระบบ
         {
             $Username = $this->input->post('Username'); //รับค่า Username จากฟอร์ม
@@ -80,4 +81,6 @@ class Login_Con extends CI_Controller
     {
         $this->load->view('customer_view'); //เรียกใช้งานหน้า customer
     }
+
+    
 }
