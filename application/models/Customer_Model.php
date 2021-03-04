@@ -85,7 +85,22 @@ class Customer_Model extends CI_Model
 	function getBarberByCustomer($id) //ฟังก์ชั่น getBarberByCustomer โดยรับค่าพารามิเตอร์ $id มาจาก Customer_Con
 	{
 		$query = $this->db->where('B_ID', $id) //จากนั้นทำการค้นหาแบบกำหนดเงื่อนไขจากฟิลด์ B_ID ถ้า $id ที่รับมาตรงกับ B_ID
-						  ->get('barber'); //ให้ทำการค้นหาจากตาราง barber
+			->get('barber'); //ให้ทำการค้นหาจากตาราง barber
 		return $query->row(); //จากนั้นนำค่า $query ส่งค่าเป็น object โดยจะส่งข้อมูลออกมาเพียง เรคอร์ดเดียว กลับไปที่ Customer_Con
+	}
+	function cancelBooking($id)
+	{
+		$query = $this->db->where('BK_ID', $id)
+			->delete('booking');
+			if ($query) //เมื่อ query สำเร็จ
+		{
+			echo "<script language=\"JavaScript\">";
+			echo "alert('บันทึกข้อมูลเรียบร้อยแล้ว')";
+			echo "</script>";
+		} else {
+			echo "<script language=\"JavaScript\">";
+			echo "alert('ไม่สามารถบันทึกข้อมูลได้ค่ะเกิดข้อผิดพลาด')";
+			echo "</script>";
+		}
 	}
 }

@@ -103,4 +103,5 @@ class Customer_Con extends CI_Controller
         $data['ID'] = $this->CM->getBarberByCustomer($id); //เรียกใช้งานฟังก์ชั่น getBarberByCustomer มาจาก Admin_Model จากนั้นส่ง พารามิเตอร์ $id ไป
         $this->load->view('barber_profile', $data); //เรียกใช้งานหน้า barber_profile แล้วนำข้อมูล data ที่เก็บไว้ โดยชื่อว่า ID ไปที่หน้า barber_profile
     }
+       
 }
