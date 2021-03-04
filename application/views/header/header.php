@@ -11,7 +11,7 @@
   <!-- <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script> -->
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/header_navs.css">
+  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/header/header_navbar.css">
   <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
@@ -76,29 +76,48 @@
                 <div class="signup-link">Not a member? <a href="">Signup now</a></div>
               </form>
               <form action="http://localhost/Mom_House_Barber/index.php/Customer_Con/insert_regis" class="signup" method="post">
-                <div class="field">
-                  <input type="text" name="C_Name" placeholder="First name" required>
+                <div class="field C_Name Display-non">
+                  <input type="text" name="C_Name" value="ไม่มีข้อมูล" placeholder="First name" required>
                 </div>
-                <div class="field">
-                  <input type="text" name="C_Lname" placeholder="Last name" required>
+                <div class="field C_Lname Display-non">
+                  <input type="text" name="C_Lname" value="ไม่มีข้อมูล" placeholder="Last name" required>
                 </div>
-                <div class="raido-sex-button">
+                <div class="field C_Nickname">
+                  <input type="text" name="C_Nickname" placeholder="Nickname" required>
+                </div>
+                <div class="raido-sex-button C_Sex Display-non">
                   <div class="sex-radio-container">
                     <label class="input-sex" for="Sex">Sex :</label>
-                    <input class="radio-sex" type="radio" name="C_Sex" value="ชาย" id="option-1" checked>
-                    <input class="radio-sex" type="radio" name="C_Sex" value="หญิง" id="option-2">
+                    <input class="radio-sex" type="radio" name="C_Sex" value="ไม่มีข้อมูล" id="option-1" checked>
+                    <input class="radio-sex" type="radio" name="C_Sex" value="ชาย" id="option-2">
+                    <input class="radio-sex" type="radio" name="C_Sex" value="หญิง" id="option-3">
+                    <input class="radio-sex" type="radio" name="C_Sex" value="ไม่ต้องการระบุ" id="option-4">
                     <label for="option-1" class="option option-1">
                       <div class="sex-dot"></div>
-                      <span>Male</span>
+                      <span>No data</span>
                     </label>
                     <label for="option-2" class="option option-2">
                       <div class="sex-dot"></div>
+                      <span>Male</span>
+                    </label>
+                    <label for="option-3" class="option option-3">
+                      <div class="sex-dot"></div>
                       <span>Female</span>
+                    </label>
+                    <label for="option-4" class="option option-4">
+                      <div class="sex-dot"></div>
+                      <span>Don't want to specify</span>
                     </label>
                   </div>
                 </div>
-                <div class="field">
+                <div class="field C_Phone">
                   <input type="text" name="C_Phone" placeholder="Phone" required>
+                </div>
+                <div class="field C_Facebook Display-non">
+                  <input type="text" name="C_Facebook" value="ไม่มีข้อมูล" placeholder="Facebook" required>
+                </div>
+                <div class="field C_Img Display-non">
+                  <input type="text" name="C_Img" value="img_user_placeholder.jpg" placeholder="CusImg" required>
                 </div>
                 <div class="field">
                   <input type="text" name="Username" placeholder="Username (At least 6)" required>
@@ -106,7 +125,7 @@
                 <div class="field">
                   <input type="password" name="Password" placeholder="Password" required>
                 </div>
-                <div class="field s_id">
+                <div class="field s_id Display-non">
                   <input type="text" name="S_ID" value="3" required>
                 </div>
                 <div class="field btn">
@@ -169,7 +188,7 @@
           document.getElementById("label-signup").click();
         }
       }, 50)
-      
+
     })
   </script>
   <script>

@@ -31,21 +31,18 @@ defined('BASEPATH') or exit('No direct script access allowed');
         
         <div class="profile_info">
           <div class="profile_info_top">
-            <h1 class="profile_info_top-h1"><?php echo $row->C_Name . br(1); ?></h1>
+            <h1 class="profile_info_top-h1"><?php echo $row->Username . br(1); ?></h1>
             <?php echo anchor('Customer_Con/edit_profile', 'แก้ไขข่อมูลส่วนตัว', 'class="edit"') . br(1); ?>
             <a href="#" class="gear"><i class="fas fa-cogs"></i></a>
         </div>
 
           <div class="profile_info_center">
-            <div><font size=3>ชื่อ-นามสกุล :</font><?php echo $row->C_Name . br(0); ?> <?php echo $row->C_Lname . br(1); ?> </div>
-            <div><font size=3>เพศ :</font><?php echo $row->C_Sex . br(1); ?></div>
-            <div><font size=3>เบอร์โทร :</font><?php echo $row->C_Phone . br(1); ?></div>
-            <div><font size=3>Facebook :</font><?php echo $row->C_Facebook . br(1); ?></div>
+            <div><font size=3>ชื่อเล่น : </font><?php echo $row->C_Nickname . br(1); ?> </div>
+            <div><font size=3>ชื่อ-นามสกุล : </font><?php echo $row->C_Name . br(0); ?> <?php echo $row->C_Lname . br(1); ?> </div>
+            <div><font size=3>เพศ : </font><?php echo $row->C_Sex . br(1); ?></div>
+            <div><font size=3>เบอร์โทร : </font><?php echo $row->C_Phone . br(1); ?></div>
+            <div><font size=3>Facebook : </font><?php echo $row->C_Facebook . br(1); ?></div>
           </div>
-        <div class="profile_info_bottom">
-          <?php echo anchor('Customer_Con/edit_profile', 'Facebook', 'class="edit_button"') . br(1); ?>
-
-        </div>
 
       <?php
   }

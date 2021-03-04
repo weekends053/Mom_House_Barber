@@ -20,13 +20,19 @@ class Customer_Con extends CI_Controller
     function insert_regis() //ฟังก์ชั่น insert customer
     {
         //สร้างกฏสำหรับ C_Name 'required'คือต้องไม่เป็นค่าว่าง
-        $this->form_validation->set_rules('C_Name', 'ชื่อ', 'required');
+        $this->form_validation->set_rules('C_Name', 'ชื่อจริง', 'required');
         //สร้างกฏสำหรับ C_Lname 'required'คือต้องไม่เป็นค่าว่าง
         $this->form_validation->set_rules('C_Lname', 'นามสกุล', 'required');
+        //สร้างกฏสำหรับ C_Nickname 'required'คือต้องไม่เป็นค่าว่าง
+        $this->form_validation->set_rules('C_Nickname', 'ชื่อเล่น', 'required');
         //สร้างกฏสำหรับ C_Sex 'required'คือต้องไม่เป็นค่าว่าง
         $this->form_validation->set_rules('C_Sex', 'เพศ', 'required');
         //สร้างกฏสำหรับ C_Phone 'required|is_natural|exact_length[10]'คือต้องไม่เป็นค่าว่าง หรือ เป็นตัวเลขจำนวนเต็ม หรือ และต้องตัวอักษรเท่ากับ 10
         $this->form_validation->set_rules('C_Phone', 'เบอร์โทร', 'required|is_natural|exact_length[10]');
+        //สร้างกฏสำหรับ C_Img 'required'คือต้องไม่เป็นค่าว่าง
+        $this->form_validation->set_rules('C_Facebook', 'เฟสบุ๊ค', 'required');
+        //สร้างกฏสำหรับ C_Img 'required'คือต้องไม่เป็นค่าว่าง
+        $this->form_validation->set_rules('C_Img', 'รูป', 'required');
         //สร้างกฏสำหรับ Username 'required'คือต้องไม่เป็นค่าว่าง หรือ มีตัวอักษรอย่างน้อย 6 ตัว หรือ ตัวอักษรและตัวเลข
         $this->form_validation->set_rules('Username', 'รหัสผู้ใช้', 'required|min_length[6]|alpha_numeric');
         //สร้างกฏสำหรับ Password 'required'คือต้องไม่เป็นค่าว่าง หรือ มีตัวอักษรอย่่างน้อย 6 ตัว
@@ -42,8 +48,11 @@ class Customer_Con extends CI_Controller
                     'Username' => $this->input->post("Username"),
                     'C_Name' => $this->input->post("C_Name"),
                     'C_Lname' => $this->input->post("C_Lname"),
+                    'C_Nickname' => $this->input->post("C_Nickname"),
                     'C_Sex' => $this->input->post("C_Sex"),
                     'C_Phone' => $this->input->post("C_Phone"),
+                    'C_Facebook' => $this->input->post("C_Facebook"),
+                    'C_Img' => $this->input->post("C_Img")
                 );
                 $data1 = array(
                     'Username' => $this->input->post("Username"),
@@ -53,7 +62,7 @@ class Customer_Con extends CI_Controller
                 $this->CM->register_login($data1);   //เรียกใช้ฟังชั่น insert ในฐานข้อมูล
                 $this->CM->register($data); //เรียกใช้ฟังชั่น insert ในฐานข้อมูล
 
-                redirect('Page_Con/index','refresh');
+                redirect('Page_Con/index', 'refresh');
             } else { //กรอกข้อมูลไม่ถูกต้องตามกฏ
                 $this->session->set_flashdata('msg_error', 'กรุณากรอกข้อมูลครบค่ะ !');
                 $this->load->view('register_view');

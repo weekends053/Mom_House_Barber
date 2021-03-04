@@ -11,7 +11,7 @@
     <!-- <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script> -->
 
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/footer/footers.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/footer/footer.css">
     <script src="https://kit.fontawesome.com/a076d05399.js"></script>
 </head>
 
@@ -19,7 +19,7 @@
     <footer class="bottom-footer" style="background: url(<?php echo base_url(); ?>img/bgBarber.png)">
         <p class="text-footer">Mom House Barber</p>
     <div class="right-footer">
-                <img class="banner-logo" src="<?php echo base_url(); ?>/img/Logo.png">
+                <img class="footer-logo" src="<?php echo base_url(); ?>/img/Logo.png">
             </div>
             <div class="container-footer-icon">
             <a href="#"><i class="fab fa-facebook"></i></a>
