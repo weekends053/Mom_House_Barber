@@ -1,3 +1,4 @@
+</html>
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 ?>
@@ -16,10 +17,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
-<?php
+    <?php
     include("header/customer_navbar.php");
     include("banner/banner.php");
-    include("non_cus_hair_style.php");
+    include("customer_get_all_barber.php");
     include("footer/footer.php");
     ?>
 </body>

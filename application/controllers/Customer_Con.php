@@ -72,18 +72,32 @@ class Customer_Con extends CI_Controller
         }
     }
 
-    function show_profile() //ฟังก์ชั่นดู โปรไฟล์ customer
+    function customer_profile() //ฟังก์ชั่นดู โปรไฟล์ customer
     {
         $sess =  $this->session->userdata('Username');      //นำข้อมูล session เก็บไว้ในตัวแปร $sess
         $data['CUSTOMER'] = $this->CM->getProfile($sess);        //เก็บข้อมูลและฟังก์ชั่นไว้ตัวแปร data
-        $this->load->view('profile_view', $data);          //นำข้อมูลที่ได้ส่งไปที่หน้า profile_view
+        $this->load->view('customer_get_profile', $data);          //นำข้อมูลที่ได้ส่งไปที่หน้า profile_view
     }
 
-    function edit_profile() //ฟังก์ชั่น แก้ไขโปรไฟล์ customer
+    function get_profile_customer() //ฟังก์ชั่นดู โปรไฟล์ customer 
     {
         $sess =  $this->session->userdata('Username');      //นำข้อมูล session เก็บไว้ในตัวแปร $sess
         $data['CUSTOMER'] = $this->CM->getProfile($sess);        //เก็บข้อมูลและฟังก์ชั่นไว้ตัวแปร data
-        $this->load->view('edit_view', $data);          //นำข้อมูลที่ได้ส่งไปที่หน้า profile_view
+        $this->load->view('customer_profile', $data);          //นำข้อมูลที่ได้ส่งไปที่หน้า customer_get_profile
+    }
+
+    function edit_profile_customer() //ฟังก์ชั่น แก้ไขโปรไฟล์ customer
+    {
+        $sess =  $this->session->userdata('Username');      //นำข้อมูล session เก็บไว้ในตัวแปร $sess
+        $data['CUSTOMER'] = $this->CM->getProfile($sess);        //เก็บข้อมูลและฟังก์ชั่นไว้ตัวแปร data
+        $this->load->view('customer_profile_edit', $data);          //นำข้อมูลที่ได้ส่งไปที่หน้า profile_view
+    }
+
+    function customer_profile_edit() //ฟังก์ชั่น แก้ไขโปรไฟล์ customer
+    {
+        $sess =  $this->session->userdata('Username');      //นำข้อมูล session เก็บไว้ในตัวแปร $sess
+        $data['CUSTOMER'] = $this->CM->getProfile($sess);        //เก็บข้อมูลและฟังก์ชั่นไว้ตัวแปร data
+        $this->load->view('customer_get_profile_edit', $data);          //นำข้อมูลที่ได้ส่งไปที่หน้า profile_view
     }
 
     function save_profile() //ฟังก์ชั่น update customer
@@ -94,22 +108,30 @@ class Customer_Con extends CI_Controller
             'C_Lname' => $this->input->post("C_Lname"),
             'C_Sex' => $this->input->post("C_Sex"),
             'C_Phone' => $this->input->post("C_Phone"),
-            'C_Facebook' => $this->input->post("C_Facebook"),
-            'C_Img' => $this->input->post("C_Img"),
+            'C_Facebook' => $this->input->post("C_Facebook")
         );
         $this->CM->setProfile($data);
         $sess =  $this->session->userdata('Username');      //นำข้อมูล session เก็บไว้ในตัวแปร $sess
         $data1['CUSTOMER'] = $this->CM->getProfile($sess);
-        $this->load->view('profile_view', $data1);
+        $this->load->view('customer_profile', $data1);
     }
 
     function show_barber(){ //ฟังก์ชั่น show_barber
         $data['Barber'] = $this->AM->getBarberAll(); //ดึงข้อมูลมาจาก Admin_Model จากนั้นเรียกใช้ฟังก์ชั่น getBarberAll ใน Admin_Model
-        $this->load->view('selecting_Barber_view', $data); //เรียกใช้หน้า selecting_Barber_view แล้วส่งค่าไปยังหน้า selecting_Barber_view
+        $this->load->view('customer_get_all_barber', $data); //เรียกใช้หน้า selecting_Barber_view แล้วส่งค่าไปยังหน้า selecting_Barber_view
+    }
+    function customer_look_all_barber(){ //ฟังก์ชั่น customer_look_all_barber
+        $data['Barber'] = $this->AM->getBarberAll(); //ดึงข้อมูลมาจาก Admin_Model จากนั้นเรียกใช้ฟังก์ชั่น getBarberAll ใน Admin_Model
+        $this->load->view('customer_look_all_barber', $data); //เรียกใช้หน้า selecting_Barber_view แล้วส่งค่าไปยังหน้า selecting_Barber_view
     }
 
     function detail_profilebarber($id){ //ฟังก์ชั่น detail_profilebarber โดยรับ object $id มาจาก show_barber
         $data['ID'] = $this->CM->getBarberByCustomer($id); //เรียกใช้งานฟังก์ชั่น getBarberByCustomer มาจาก Admin_Model จากนั้นส่ง พารามิเตอร์ $id ไป
-        $this->load->view('barber_profile', $data); //เรียกใช้งานหน้า barber_profile แล้วนำข้อมูล data ที่เก็บไว้ โดยชื่อว่า ID ไปที่หน้า barber_profile
+        $this->load->view('customer_get_barber_profile', $data); //เรียกใช้งานหน้า customer_get_barber_profile แล้วนำข้อมูล data ที่เก็บไว้ โดยชื่อว่า ID ไปที่หน้า customer_get_barber_profile
+    }
+
+    function customer_look_barber_profile($id){ //ฟังก์ชั่น detail_profilebarber โดยรับ object $id มาจาก show_barber
+        $data['ID'] = $this->CM->getBarberByCustomer($id); //เรียกใช้งานฟังก์ชั่น getBarberByCustomer มาจาก Admin_Model จากนั้นส่ง พารามิเตอร์ $id ไป
+        $this->load->view('customer_look_barber_profile', $data); //เรียกใช้งานหน้า customer_look_barber_profile แล้วนำข้อมูล data ที่เก็บไว้ โดยชื่อว่า ID ไปที่หน้า customer_look_barber_profile
     }
 }

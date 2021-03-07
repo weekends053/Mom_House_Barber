@@ -1,21 +1,3 @@
-<!DOCTYPE html>
-<!-- Created By CodingNepal - www.codingnepalweb.com -->
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-  <!--using FontAwesome-->
-  <!-- <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script> -->
-
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
-  <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/header/header_navbar.css">
-  <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-</head>
-
-<body>
   <nav class="navbar">
     <div class="content">
       <div class="logo">
@@ -39,7 +21,10 @@
 
   <div class="popup">
     <div class="popup-content">
-      <img class="close" src="<?php echo base_url(); ?>img/error.png" alt="close">
+
+      <div class="close">
+        <i class="fas fa-times"></i>
+      </div>
       <div class="popup-left">
         <img class="popup-left-logo" src="<?php echo base_url(); ?>/img/Logo.png">
         <h1>Mom_House_Barber</h1>
@@ -174,7 +159,6 @@
       document.querySelector(".popup").style.display = "none"
     })
 
-
     document.getElementById("button-reg").addEventListener("click", function() {
       document.querySelector(".popup").style.display = "flex";
       time = 0;
@@ -210,7 +194,3 @@
       return false;
     });
   </script>
-
-</body>
-
-</html>

@@ -8,7 +8,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Mom House Barber | Customer</title>
-    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/styleCust.css">
+    <link rel="stylesheet" type="text/css" href="<?php echo base_url(); ?>css/styleCus.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.9.0/css/all.min.css">
 
     <script src="https://kit.fontawesome.com/c8e4d183c2.js" crossorigin="anonymous"></script>
@@ -16,12 +16,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
-<?php
-    include("header/customer_navbar.php");
-    include("banner/banner.php");
-    include("non_cus_hair_style.php");
+
+    <?php
+    include("header/barber_navbar.php");
+    include("banner/b_banner.php");
+    include("edit_view.php");
     include("footer/footer.php");
     ?>
+
 </body>
 
 </html>

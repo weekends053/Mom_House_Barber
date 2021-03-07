@@ -16,12 +16,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 </head>
 
 <body>
-<?php
+
+    <?php
     include("header/customer_navbar.php");
-    include("banner/banner.php");
-    include("non_cus_hair_style.php");
+    include("banner/all_banner.php");
+    include("customer_get_profile_edit.php");
     include("footer/footer.php");
     ?>
+
 </body>
 
 </html>

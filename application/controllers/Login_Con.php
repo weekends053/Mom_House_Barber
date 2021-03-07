@@ -78,6 +78,7 @@ class Login_Con extends CI_Controller
     }
     function customer_page()
     {
-        $this->load->view('customer_view'); //เรียกใช้งานหน้า customer
+        $result['HS'] = $this->AM->get_HairStyle();
+        $this->load->view('customer_view',$result); //เรียกใช้งานหน้า customer
     }
 }
