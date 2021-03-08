@@ -85,14 +85,14 @@ class Booking_Con extends CI_Controller
             $check = $this->BKM->checkTimeBarber($day, $month, $time, $barber);
             if ($check == 1) {
                 echo "<script language=\"JavaScript\">";
-                echo "alert('การจองไม่สำเร็จช่วงเวลาที่คุณเลือกช่างตัดผมติดคิวลูกค้าอยู่ค่ะ !')";
+                echo "alert('การจองไม่สำเร็จ ! ช่วงเวลาที่คุณเลือกช่างตัดผมติดคิวลูกค้าอยู่ค่ะ !')";
                 echo "</script>";
-                $this->load->view('customer_view');
+                redirect('Booking_Con/Booking','refresh');
                 }else if($this->input->post('BK_Year') == 0 || $this->input->post('BK_Month') == 0 || $this->input->post('BK_Day') == 0){
                     echo "<script language=\"JavaScript\">";
-                    echo "alert('กรุณาเลือก ช่างตัดผม หรือ  วัน/เดือน/ปี ให้ถูกต้องค่ะ !')";
+                    echo "alert('กรุณาเลือก วัน/เดือน/ปี ให้ถูกต้องค่ะ !')";
                     echo "</script>";
-                    $this->load->view('customer_view');
+                    redirect('Booking_Con/Booking','refresh');
                 }else{
                 $id = $this->BKM->GenerateId();
                 $data = array(
@@ -106,7 +106,9 @@ class Booking_Con extends CI_Controller
 
                 );
                 $this->BKM->createBookingQueueByCustomer($data); //เรียกใช้ฟังชั่น insert ในฐานข้อมูล
-                $this->load->view('customer_view', $data);
+                $c_id = $this->input->post('C_ID');
+                $data['BOOKING'] = $this->BKM->getBookingQueueByCustomer($c_id);
+                $this->load->view('showbookingqueue_view', $data);
                 
             }
         }

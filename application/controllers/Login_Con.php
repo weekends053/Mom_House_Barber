@@ -7,6 +7,7 @@ class Login_Con extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Login_Model', 'LM');
+        $this->load->model('Customer_Model', 'CM');
         $this->load->model('Admin_Model', 'AM');
         $this->load->library(array('session', 'form_validation'));
     }
@@ -79,7 +80,9 @@ class Login_Con extends CI_Controller
     }
     function customer_page()
     {
-        $this->load->view('customer_view'); //เรียกใช้งานหน้า customer
+        $sess =  $this->session->userdata('Username');
+        $data['CUSTOMER'] = $this->CM->getProfile($sess);
+        $this->load->view('customer_view',$data); //เรียกใช้งานหน้า customer
     }
 
     

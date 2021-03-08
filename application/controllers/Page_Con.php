@@ -101,5 +101,6 @@ class Page_Con extends CI_Controller
     {
 		$this->load->view('test_login'); //โหลดหน้าทรงผม แล้วนำข้อมูลไปใช้งาน ใน hair_view
     }
+	
     
 }

@@ -88,19 +88,18 @@ class Customer_Model extends CI_Model
 			->get('barber'); //ให้ทำการค้นหาจากตาราง barber
 		return $query->row(); //จากนั้นนำค่า $query ส่งค่าเป็น object โดยจะส่งข้อมูลออกมาเพียง เรคอร์ดเดียว กลับไปที่ Customer_Con
 	}
+	function getBookingQueue($c_id){
+		$this->db->select('*')
+		->from('booking')
+		->join('customer', 'booking.C_ID = customer.C_ID', 'left')
+		->where('customer.C_ID', $c_id);
+		$query = $this->db->get()->result();
+		return $query;
+	}
 	function cancelBooking($id)
 	{
 		$query = $this->db->where('BK_ID', $id)
 			->delete('booking');
-			if ($query) //เมื่อ query สำเร็จ
-		{
-			echo "<script language=\"JavaScript\">";
-			echo "alert('บันทึกข้อมูลเรียบร้อยแล้ว')";
-			echo "</script>";
-		} else {
-			echo "<script language=\"JavaScript\">";
-			echo "alert('ไม่สามารถบันทึกข้อมูลได้ค่ะเกิดข้อผิดพลาด')";
-			echo "</script>";
-		}
+			return $query;
 	}
 }

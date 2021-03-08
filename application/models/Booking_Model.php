@@ -22,23 +22,23 @@ class Booking_Model extends CI_Model
 
     function getTimeSlot()
     {
-        $query = $this->db->select('ST_ID,ST_Time')->get('slot_time')-> result_array(); 
-     
-            $arr1 = array(); 
-            foreach($query as $row) { 
-                $arr1[$row['ST_ID']] = $row['ST_Time']; 
-            } 
-            $arr1[''] = '---Select Time Slot---'; 
-            return $arr1; 
+        $query = $this->db->select('ST_ID,ST_Time')->get('slot_time')->result_array();
+
+        $arr1 = array();
+        foreach ($query as $row) {
+            $arr1[$row['ST_ID']] = $row['ST_Time'];
+        }
+        $arr1[''] = '---Select Time Slot---';
+        return $arr1;
     }
-    function checkTimeBarber($day,$month,$time,$barber)
+    function checkTimeBarber($day, $month, $time, $barber)
     {
-       $query = $this->db->where('BK_Day', $day)
-                 ->where('BK_Month', $month)
-                 ->where('ST_ID', $time)
-                 ->where('B_ID', $barber)
-                 ->count_all_results('booking');
-                 return $query;
+        $query = $this->db->where('BK_Day', $day)
+            ->where('BK_Month', $month)
+            ->where('ST_ID', $time)
+            ->where('B_ID', $barber)
+            ->count_all_results('booking');
+        return $query;
     }
 
     function createBookingQueueByCustomer($data)
@@ -56,8 +56,14 @@ class Booking_Model extends CI_Model
         }
     }
 
-    function getBookingQueueByCustomer()
+    function getBookingQueueByCustomer($c_id)
     {
+        $query = $this->db->select('*')
+            ->from('booking')
+            ->join('customer', 'booking.C_ID = customer.C_ID', 'left')
+            ->where('customer.C_ID', $c_id);
+        $query = $this->db->get();
+        return $query->result();
     }
 
     function cancelBookingQueueByCustomer()
@@ -84,25 +90,25 @@ class Booking_Model extends CI_Model
         return $query->result();
     }
     function selectBarber()
-	{
-            $query = $this->db->select('B_ID,B_Nickname')->get('barber')-> result_array(); 
-     
-            $arr = array(); 
-            foreach($query as $row) { 
-                $arr[$row['B_ID']] = $row['B_Nickname']; 
-            } 
-            $arr[''] = '---Select Barber---'; 
-            return $arr; 
-	}
+    {
+        $query = $this->db->select('B_ID,B_Nickname')->get('barber')->result_array();
+
+        $arr = array();
+        foreach ($query as $row) {
+            $arr[$row['B_ID']] = $row['B_Nickname'];
+        }
+        $arr[''] = '---Select Barber---';
+        return $arr;
+    }
     function selectMonth()
-	{
-            $query = $this->db->select('M_ID,M_Th_Name')->get('month')-> result_array(); 
-     
-            $arr = array(); 
-            foreach($query as $row) { 
-                $arr[$row['M_ID']] = $row['M_Th_Name']; 
-            } 
-            $arr[''] = '---Select Month---'; 
-            return $arr; 
-	}
+    {
+        $query = $this->db->select('M_ID,M_Th_Name')->get('month')->result_array();
+
+        $arr = array();
+        foreach ($query as $row) {
+            $arr[$row['M_ID']] = $row['M_Th_Name'];
+        }
+        $arr[''] = '---Select Month---';
+        return $arr;
+    }
 }

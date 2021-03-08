@@ -7,7 +7,8 @@ class Customer_Con extends CI_Controller
     {
         parent::__construct();
         $this->load->model('Customer_Model', 'CM');
-        $this->load->model('Admin_Model','AM');
+        $this->load->model('Barber_Model','BM');
+        $this->load->model('Booking_Model','BKM');
     }
     function index() //ฟังก์ชั่น index
     {
@@ -95,7 +96,7 @@ class Customer_Con extends CI_Controller
     }
 
     function show_barber(){ //ฟังก์ชั่น show_barber
-        $data['Barber'] = $this->AM->getBarberAll(); //ดึงข้อมูลมาจาก Admin_Model จากนั้นเรียกใช้ฟังก์ชั่น getBarberAll ใน Admin_Model
+        $data['Barber'] = $this->BM->getBarber(); //ดึงข้อมูลมาจาก Admin_Model จากนั้นเรียกใช้ฟังก์ชั่น getBarberAll ใน Admin_Model
         $this->load->view('selecting_Barber_view', $data); //เรียกใช้หน้า selecting_Barber_view แล้วส่งค่าไปยังหน้า selecting_Barber_view
     }
 
@@ -103,5 +104,23 @@ class Customer_Con extends CI_Controller
         $data['ID'] = $this->CM->getBarberByCustomer($id); //เรียกใช้งานฟังก์ชั่น getBarberByCustomer มาจาก Admin_Model จากนั้นส่ง พารามิเตอร์ $id ไป
         $this->load->view('barber_profile', $data); //เรียกใช้งานหน้า barber_profile แล้วนำข้อมูล data ที่เก็บไว้ โดยชื่อว่า ID ไปที่หน้า barber_profile
     }
-       
+    function show_bookingqueue($c_id){
+        $data['BOOKING'] = $this->CM->getBookingQueue($c_id);
+         $this->load->view('showbookingqueue_view', $data);
+         
+    } 
+    function del_booking($id){
+        $check = $this->CM->cancelBooking($id);
+        if($check){
+            echo "<script language=\"JavaScript\">";
+			echo "alert('ลบคิวที่คุณจองเรียบร้อยแล้วค่ะ')";
+			echo "</script>";
+         redirect('Login_Con/Customer_page','refresh');   
+        }else{
+            echo "<script language=\"JavaScript\">";
+			echo "alert('ไม่สามารถลบข้อมูลได้ค่ะ !')";
+			echo "</script>";
+        }
+        
+    } 
 }

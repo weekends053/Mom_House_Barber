@@ -18,6 +18,11 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<center>
 		<?php
 		echo anchor('Booking_Con/Booking', 'จองคิว') . br(2);
+
+		foreach ($CUSTOMER as $row) {
+		echo anchor('Customer_Con/show_bookingqueue/'.$row->C_ID,'การจองของฉัน') . br(2);
+		}
+
 		echo anchor('Customer_Con/show_barber', 'ดูโปรไฟล์ช่าง') . br(2);
 		echo anchor('Customer_Con/show_profile', 'ดูโปรไฟล์') . br(2);
 		echo anchor('Login_Con/logout', 'ออกจากระบบ');

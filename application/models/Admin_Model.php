@@ -3,9 +3,14 @@ defined('BASEPATH') or exit('No direct script access allowed');
 
 class Admin_Model extends CI_Model
 {
+    function getCustomer()
+	{
+		$this->db->select('*');
+		$query = $this->db->get('customer');
+		return $query->result();
+	}
 
-    
-    function getBarberAll()
+    function getBarber()
 	{
 		$this->db->select('*');	//ค้นหาจากฟิลด์ทั้งหมด
 		$query = $this->db->get('barber');	//โดยค้นจากตาราง barber จากนั้นให้ $query เก็บฟังก์ชั่นไว้
