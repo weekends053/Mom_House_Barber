@@ -19,6 +19,21 @@ class UserManagement_Model extends CI_Model
 			echo "</script>";
 		}
 	}
+	function createBarberlogin($data1)
+	{
+		$query = $this->db->insert('login', $data1);
+		if ($query) //เมื่อ query สำเร็จ
+		{
+
+			echo "<script language=\"JavaScript\">";
+			echo "alert('บันทึกข้อมูลเรียบร้อยแล้ว')";
+			echo "</script>";
+		} else {
+			echo "<script language=\"JavaScript\">";
+			echo "alert('ไม่สามารถบันทึกข้อมูลได้ค่ะเกิดข้อผิดพลาด')";
+			echo "</script>";
+		}
+	}
 	function GenerateId()
 	{
 		$query = $this->db->select('B_ID') //เลือกฟิลด์ B_ID โดยเก็บคำสั่งไว้ในตัวแปร query
@@ -65,8 +80,23 @@ class UserManagement_Model extends CI_Model
 		}
 	}
 
-	/*function manageQueueTable(){
+	function selecting_OneBookingEdit($id)
+	{
+		$this->db->select('*')
+			->from('booking')
+			->where('BK_ID', $id);
+		$query = $this->db->get();
+		return $query->result();
+	}
+
+	function setBooking($data){
 		$query = $this->db->where('BK_ID',$data['BK_ID'])
-		->update('barber',$data);
-	}*/
+			->update('booking',$data);
+		if($query){
+			return TRUE;
+		}
+		else{
+			return FALSE;
+		}
+	}
 }

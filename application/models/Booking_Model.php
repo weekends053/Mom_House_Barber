@@ -19,7 +19,6 @@ class Booking_Model extends CI_Model
         return $nextId;    //คืนค่า nextId
     }
 
-
     function getTimeSlot()
     {
         $query = $this->db->select('ST_ID,ST_Time')->get('slot_time')->result_array();
@@ -31,6 +30,7 @@ class Booking_Model extends CI_Model
         $arr1[''] = '---Select Time Slot---';
         return $arr1;
     }
+
     function checkTimeBarber($day, $month, $time, $barber)
     {
         $query = $this->db->where('BK_Day', $day)
@@ -58,7 +58,7 @@ class Booking_Model extends CI_Model
 
     function getBookingQueueByCustomer($c_id)
     {
-        $query = $this->db->select('*')
+            $this->db->select('*')
             ->from('booking')
             ->join('customer', 'booking.C_ID = customer.C_ID', 'left')
             ->where('customer.C_ID', $c_id);
@@ -82,13 +82,6 @@ class Booking_Model extends CI_Model
     {
     }
 
-    function getBookingByMonth()
-    {
-        // $this->db->query("SELECT * FROM `booking` WHERE `BK_Year` = $year && `BK_Month` = $month");
-        $query = $this->db->select('BK_Year,BK_Month,BK_Day')
-            ->get('booking');
-        return $query->result();
-    }
     function selectBarber()
     {
         $query = $this->db->select('B_ID,B_Nickname')->get('barber')->result_array();
@@ -100,15 +93,6 @@ class Booking_Model extends CI_Model
         $arr[''] = '---Select Barber---';
         return $arr;
     }
-    function selectMonth()
-    {
-        $query = $this->db->select('M_ID,M_Th_Name')->get('month')->result_array();
-
-        $arr = array();
-        foreach ($query as $row) {
-            $arr[$row['M_ID']] = $row['M_Th_Name'];
-        }
-        $arr[''] = '---Select Month---';
-        return $arr;
-    }
+   
+    
 }

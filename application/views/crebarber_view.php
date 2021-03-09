@@ -47,8 +47,18 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     
 	echo form_label('ที่อยู่','B_Address'). '<br />';
 	echo form_error('B_Address', '<font color=red>','</font><br />');
-	echo form_input('B_Address', set_value('B_Address')).'<br />';
+	echo form_textarea('B_Address', set_value('B_Address')).'<br />';
 	
+	echo form_label('รหัสผู้ใช้','Username'). '<br />';
+	echo form_error('Username', '<font color=red>','</font><br />');
+	echo form_input('Username', set_value('Username')).'<br />';
+
+	echo form_label('รหัสผ่าน','Password'). '<br />';
+	echo form_error('Password', '<font color=red>','</font><br />');
+	echo form_password('Password', set_value('Password')).'<br />';
+	
+	echo form_hidden('S_ID',set_value('S_ID','2'));
+
 	echo form_submit('btnRegister','เพิ่มช่าง');
 	echo form_close();
 	

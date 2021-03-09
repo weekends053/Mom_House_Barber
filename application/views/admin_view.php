@@ -20,6 +20,7 @@ defined('BASEPATH') or exit('No direct script access allowed');
 		echo anchor('UserManagement_Con/admin_seecustomerall', 'ดูลูกค้าทั้งหมด') . br(2);
 		echo anchor('UserManagement_Con/create_barber', 'เพิ่มช่างตัดผม') . br(2);
 		echo anchor('UserManagement_Con/admin_seebarberall', 'จัดการช่าง') . br(2);
+		echo anchor('UserManagement_Con/admin_seebookingqueueall', 'จัดการคิว') . br(2);
 		echo anchor('Login_Con/logout', 'ออกจากระบบ');
 		?>
 	</center>

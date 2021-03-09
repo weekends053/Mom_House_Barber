@@ -17,53 +17,10 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	<?php include("banner/b_banner.php"); ?>
 	<center>
 		<?php
-		echo 'ยินดีต้อนรับเข้าสู่ระบบ,' . $this->session->userdata('Username');
+		echo br(1).'ยินดีต้อนรับเข้าสู่ระบบ,' . $this->session->userdata('Username').br(2);
+		echo anchor('Barber_Con/show_profilebarber', 'ดูโปรไฟล์') . br(2);
 		echo '<br />' . anchor('Login_Con/logout', 'ออกจากระบบ');
 		?>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
-		<p>tdrcigvbjnipo[mkpl,mk'ojnpihbougvifycdcyivgubohipjnokmpl,mkponjibhougviyf</p>
 	</center>
 </body>
 

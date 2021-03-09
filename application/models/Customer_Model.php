@@ -56,7 +56,6 @@ class Customer_Model extends CI_Model
 
 	function getProfile($sess)
 	{
-
 		$this->db->select('*')
 			->from('customer')
 			->join('login', 'login.Username = customer.Username', 'left')

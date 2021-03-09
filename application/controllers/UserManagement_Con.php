@@ -33,7 +33,8 @@ class UserManagement_Con extends CI_Controller
         $this->form_validation->set_rules('B_Phone', 'เบอร์โทร', 'required|is_natural|exact_length[10]');
         //สร้างกฏสำหรับ Username 'required'คือต้องไม่เป็นค่าว่าง หรือ มีตัวอักษรอย่างน้อย 6 ตัว หรือ ตัวอักษรและตัวเลข
         $this->form_validation->set_rules('B_Address', 'ที่อยู่', 'required');
-        //สร้างกฏสำหรับ C_Sex 'required'คือต้องไม่เป็นค่าว่าง
+        $this->form_validation->set_rules('Username', 'รหัสผู้ใช้', 'required|min_length[6]'); //สร้างกฏสำหรับ Username 'required'คือต้องไม่เป็นค่าว่าง
+        $this->form_validation->set_rules('Password', 'รหัสผ่าน', 'required|min_length[6]');
         $this->form_validation->set_error_delimiters('<font color=red>', '</font>');
         if ($this->input->post('btnRegister')) //มีการคลิกปุ่ม สมัครสมาชิก
         {
@@ -47,8 +48,14 @@ class UserManagement_Con extends CI_Controller
                     'B_Sex' => $this->input->post("B_Sex"),
                     'B_Phone' => $this->input->post("B_Phone"),
                     'B_Address' => $this->input->post("B_Address"),
+                    'Username' => $this->input->post("Username"),
                 );
-
+                $data1 = array(
+                    'Username' => $this->input->post("Username"),
+                    'Password' => $this->input->post("Password"),
+                    'S_ID' => $this->input->post("S_ID"),
+                );
+                $this->UMM->createBarberlogin($data1);
                 $this->UMM->createBarber($data); //เรียกใช้ฟังชั่น insert ในฐานข้อมูล
                 $this->load->view('admin_view');
             } else { //กรอกข้อมูลไม่ถูกต้องตามกฏ
@@ -69,6 +76,11 @@ class UserManagement_Con extends CI_Controller
         $data['BARBER'] = $this->AM->getBarber();
         $this->load->view('show_barberall_view', $data);
     }
+    public function admin_seebookingqueueall()
+    {
+        $data['BOOKING'] = $this->AM->getBooking();
+        $this->load->view('show_bookingall_view', $data);
+    }
 
     function admin_editbarber($id)
     {
@@ -76,7 +88,7 @@ class UserManagement_Con extends CI_Controller
         $this->load->view('admin_editbarber_view', $data);
     }
 
-    function save_barber() //ฟังก์ชั่น update customer
+    function save_barber()
     {
         $data = array(
             'B_ID' => $this->input->post("B_ID"),
@@ -105,17 +117,40 @@ class UserManagement_Con extends CI_Controller
     public function del_barber($id)
     {
         $data['BARBER'] = $this->UMM->deleteBarber($id);
-        if ($data == TRUE) //เมื่อ query สำเร็จ
-        {
+        redirect('UserManagement_Con/admin_seebarberall','refresh');
+    }
+
+    public function admin_editqueue($id)
+    {
+        $data['BOOKING'] = $this->UMM->selecting_OneBookingEdit($id);
+        $this->load->view('admin_editbooking_view', $data);
+
+    }
+    function save_booking()
+    {
+        $data = array(
+            'BK_ID' => $this->input->post("BK_ID"),
+            'C_ID' => $this->input->post("C_ID"),
+            'B_ID' => $this->input->post("B_ID"),
+            'BK_Year' => $this->input->post("BK_Year"),
+            'BK_Month' => $this->input->post("BK_Month"),
+            'BK_Day' => $this->input->post("BK_Day"),
+            'ST_ID' => $this->input->post("ST_ID"),
+        );
+        $check = $this->UMM->setBooking($data);
+        if ($check == TRUE) {
             echo "<script language=\"JavaScript\">";
             echo "alert('บันทึกข้อมูลเรียบร้อยแล้ว')";
             echo "</script>";
-            redirect('UserManagement_Con/admin_seebarberall', 'refresh');
+           $data1['BOOKING'] = $this->AM->getBooking();
+            $this->load->view('show_bookingall_view', $data1); 
         } else {
             echo "<script language=\"JavaScript\">";
             echo "alert('ไม่สามารถบันทึกข้อมูลได้ค่ะเกิดข้อผิดพลาด')";
             echo "</script>";
-            redirect('UserManagement_Con/admin_seebarberall', 'refresh');
+            redirect('UserManagement_Con/admin_editbooking_view');
         }
+        
     }
+    
 }
