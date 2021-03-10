@@ -19,7 +19,7 @@ class Booking_Model extends CI_Model
         return $nextId;    //คืนค่า nextId
     }
 
-    function getTimeSlot()
+    function selectTimeSlot()
     {
         $query = $this->db->select('ST_ID,ST_Time')->get('slot_time')->result_array();
 
@@ -30,11 +30,25 @@ class Booking_Model extends CI_Model
         $arr1[''] = '---Select Time Slot---';
         return $arr1;
     }
-
-    function checkTimeBarber($day, $month, $time, $barber)
+    function getTimeSlot()
     {
-        $query = $this->db->where('BK_Day', $day)
+        $query = $this->db->query("SELECT * FROM slot_time WHERE ST_ID NOT IN ( SELECT ST_ID FROM booking )");
+        return $query->result();
+    }
+    function checkBookingDuplicate($customer)
+    {
+        $query = $this->db->where('C_ID', $customer)
+            ->count_all_results('booking');
+        return $query;
+    }
+    function checkTimeSlot()
+    {
+    }
+    function checkTimeBarber($year, $month, $day, $time, $barber)
+    {
+        $query = $this->db->where('BK_Year', $year)
             ->where('BK_Month', $month)
+            ->where('BK_Day', $day)
             ->where('ST_ID', $time)
             ->where('B_ID', $barber)
             ->count_all_results('booking');
@@ -58,9 +72,10 @@ class Booking_Model extends CI_Model
 
     function getBookingQueueByCustomer($c_id)
     {
-            $this->db->select('*')
+        $this->db->select('*')
             ->from('booking')
             ->join('customer', 'booking.C_ID = customer.C_ID', 'left')
+            ->join('slot_time', 'booking.ST_ID = slot_time.ST_ID', 'left')
             ->where('customer.C_ID', $c_id);
         $query = $this->db->get();
         return $query->result();
@@ -93,6 +108,4 @@ class Booking_Model extends CI_Model
         $arr[''] = '---Select Barber---';
         return $arr;
     }
-   
-    
 }

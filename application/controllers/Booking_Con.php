@@ -57,42 +57,37 @@ class Booking_Con extends CI_Controller
         $data['YEAR'] = $this->select_year();
         $data['MONTH'] = $this->select_month();
         $data['DAY'] = $this->select_day();
-        $data['TIME_SLOT'] = $this->BKM->getTimeSlot();
+        $data['TIME_SLOT'] = $this->BKM->selectTimeSlot();
         $this->load->view('booking_view', $data);
     }
-    function check_timebarber()
-    {
-        $check = $this->BKM->checkTimeBarber();
-        if (count($check == 1)) {
-            echo "<script language=\"JavaScript\">";
-            echo "alert('การจองไม่สำเร็จช่วงเวลาที่คุณเลือกช่างตัดผมติดคิวลูกค้าอยู่ค่ะ !')";
-            echo "</script>";
-        } else {
-            echo "<script language=\"JavaScript\">";
-            echo "alert('จองคิวสำเร็จ')";
-            echo "</script>";
-        }
-    }
+   
 
     function ins_Booking()
     {
-        $day = $this->input->post('BK_Day');
+        $customer = $this->input->post('C_ID');
+        $year = $this->input->post('BK_Year');
         $month = $this->input->post('BK_Month');
+        $day = $this->input->post('BK_Day');
         $time = $this->input->post('ST_ID');
         $barber = $this->input->post('B_ID');
         if ($this->input->post('btnBooking')) //มีการคลิกปุ่ม สมัครสมาชิก
         {
-            $check = $this->BKM->checkTimeBarber($day, $month, $time, $barber);
-            if ($check == 1) {
-                echo "<script language=\"JavaScript\">";
-                echo "alert('การจองไม่สำเร็จ ! ช่วงเวลาที่คุณเลือกช่างตัดผมติดคิวลูกค้าอยู่ค่ะ !')";
-                echo "</script>";
-                redirect('Booking_Con/Booking','refresh');
-                }else if($this->input->post('BK_Year') == 0 || $this->input->post('BK_Month') == 0 || $this->input->post('BK_Day') == 0){
+            $checkBookingDuplicate = $this->BKM->checkBookingDuplicate($customer);
+            $checkBooking = $this->BKM->checkTimeBarber($year,$month,$day,$time,$barber);
+                if($this->input->post('BK_Year') == 0 || $this->input->post('BK_Month') == 0 || $this->input->post('BK_Day') == 0 || $this->input->post('ST_ID') == 0 || $this->input->post('B_ID') == '')
+                {
                     echo "<script language=\"JavaScript\">";
-                    echo "alert('กรุณาเลือก วัน/เดือน/ปี ให้ถูกต้องค่ะ !')";
+                    echo "alert('กรุณาเลือกข้อมูลทั้งหมดให้ถูกต้องด้วยค่ะ !')";
                     echo "</script>";
                     redirect('Booking_Con/Booking','refresh');
+                }else if($checkBookingDuplicate == 1){ //เช็คว่าลูกค้าคนเดิมจองคิวซ้ำไหม
+                    echo "<center><font color='red'><h1>คุณมีการจองคิวอยู่แล้วค่ะ</h1></font></center>";
+                    $data['BOOKING'] = $this->CM->getBookingQueue($customer);
+                    $this->load->view('showbookingqueue_view',$data);
+                }else if($checkBooking == 1){ //เช็คว่าในวันเดือนช่างและรอบนั้นลูกค้าจองซ้ำไหม 
+                    echo "<center><font color='red'><h1>การจองไม่สำเร็จ ! วันเดือนปีและเวลาที่คุณเลือกช่างตัดผมมีคิวลูกค้าท่านอื่นแล้วค่ะ</h1></font></center>";
+                    $data['TIMESLOT'] = $this->BKM->getTimeSlot();
+                    $this->load->view('showtimeslot_view',$data);  
                 }else{
                 $id = $this->BKM->GenerateId();
                 $data = array(
@@ -103,7 +98,6 @@ class Booking_Con extends CI_Controller
                     'BK_Month' => $this->input->post('BK_Month'),
                     'BK_Year' => $this->input->post('BK_Year'),
                     'ST_ID' => $this->input->post('ST_ID'),
-
                 );
                 $this->BKM->createBookingQueueByCustomer($data); //เรียกใช้ฟังชั่น insert ในฐานข้อมูล
                 $c_id = $this->input->post('C_ID');

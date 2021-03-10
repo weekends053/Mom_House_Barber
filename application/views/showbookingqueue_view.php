@@ -13,7 +13,7 @@
         <th>วันที่</th>
         <th>เดือน</th>
         <th>ปี</th>
-        <th>รอบที่</th>
+        <th>รอบ</th>
         </tr>
     <?php
     foreach ($BOOKING as $row) {
@@ -25,7 +25,7 @@
             <td><?php echo $row->BK_Day?></td>
             <td><?php echo $row->BK_Month;?></td>
             <td><?php echo $row->BK_Year;?></td>
-            <td><?php echo $row->ST_ID;?></td>
+            <td><?php echo $row->ST_Time;?></td>
             <td><?php echo anchor('Customer_Con/del_booking/'.$row->BK_ID,'ยกเลิกคิวที่จอง',array('onclick' => "return confirm('คุณต้องการยกเลิกคิวที่จองใช่หรือไม่ ?')")).br(1);?></td>
         </tr>
     <?php

@@ -91,6 +91,7 @@ class Customer_Model extends CI_Model
 		$this->db->select('*')
 		->from('booking')
 		->join('customer', 'booking.C_ID = customer.C_ID', 'left')
+		->join('slot_time', 'booking.ST_ID = slot_time.ST_ID', 'left')
 		->where('customer.C_ID', $c_id);
 		$query = $this->db->get()->result();
 		return $query;

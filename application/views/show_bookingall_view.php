@@ -21,9 +21,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         <td><?php echo $row -> BK_Year;?></td>
         <td><?php echo $row -> BK_Month;?></td>
         <td><?php echo $row -> BK_Day;?></td>
-        <td><?php echo $row -> ST_ID;?></td>
-        <td><?php echo anchor('UserManagement_Con/admin_editqueue/'.$row->BK_ID,'Edit',array('onclick' => "return confirm('คุณต้องการแก้ไขข้อมูลช่างหรือไม่ ?')")).br(1);?></td>
-        <td><?php echo anchor('UserManagement_Con/del_barber/'.$row->BK_ID,'Delete',array('onclick' => "return confirm('คุณต้องการลบช่างคนนี้หรือไม่ ?')")).br(1);?></td>        
+        <td><?php echo $row -> ST_Time;?></td>  
         <br/>
         </tr>
 

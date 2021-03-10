@@ -15,8 +15,14 @@ class Admin_Con extends CI_Controller {
     }
 
     public function admin_seebarberall(){
-        $data['CUSTOMER'] = $this->AM->getBarber();
+        $data['BARBER'] = $this->AM->getBarber();
         $this->load->view('show_barberall_view',$data);
+    }
+
+    public function admin_seebookingqueueall()
+    {
+        $data['BOOKING'] = $this->AM->getBooking();
+        $this->load->view('show_bookingall_view', $data);
     }
 
 }

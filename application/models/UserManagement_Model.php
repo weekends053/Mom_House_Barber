@@ -80,23 +80,5 @@ class UserManagement_Model extends CI_Model
 		}
 	}
 
-	function selecting_OneBookingEdit($id)
-	{
-		$this->db->select('*')
-			->from('booking')
-			->where('BK_ID', $id);
-		$query = $this->db->get();
-		return $query->result();
-	}
-
-	function setBooking($data){
-		$query = $this->db->where('BK_ID',$data['BK_ID'])
-			->update('booking',$data);
-		if($query){
-			return TRUE;
-		}
-		else{
-			return FALSE;
-		}
-	}
+	
 }

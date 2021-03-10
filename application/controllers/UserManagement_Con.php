@@ -66,21 +66,7 @@ class UserManagement_Con extends CI_Controller
             redirect('UserManagement_Con/crebarber_view');
         }
     }
-    public function admin_seecustomerall()
-    {
-        $data['CUSTOMER'] = $this->AM->getCustomer();
-        $this->load->view('show_customerall_view', $data);
-    }
-    public function admin_seebarberall()
-    {
-        $data['BARBER'] = $this->AM->getBarber();
-        $this->load->view('show_barberall_view', $data);
-    }
-    public function admin_seebookingqueueall()
-    {
-        $data['BOOKING'] = $this->AM->getBooking();
-        $this->load->view('show_bookingall_view', $data);
-    }
+    
 
     function admin_editbarber($id)
     {
@@ -113,44 +99,12 @@ class UserManagement_Con extends CI_Controller
         }
         
     }
-
     public function del_barber($id)
     {
         $data['BARBER'] = $this->UMM->deleteBarber($id);
         redirect('UserManagement_Con/admin_seebarberall','refresh');
     }
 
-    public function admin_editqueue($id)
-    {
-        $data['BOOKING'] = $this->UMM->selecting_OneBookingEdit($id);
-        $this->load->view('admin_editbooking_view', $data);
-
-    }
-    function save_booking()
-    {
-        $data = array(
-            'BK_ID' => $this->input->post("BK_ID"),
-            'C_ID' => $this->input->post("C_ID"),
-            'B_ID' => $this->input->post("B_ID"),
-            'BK_Year' => $this->input->post("BK_Year"),
-            'BK_Month' => $this->input->post("BK_Month"),
-            'BK_Day' => $this->input->post("BK_Day"),
-            'ST_ID' => $this->input->post("ST_ID"),
-        );
-        $check = $this->UMM->setBooking($data);
-        if ($check == TRUE) {
-            echo "<script language=\"JavaScript\">";
-            echo "alert('บันทึกข้อมูลเรียบร้อยแล้ว')";
-            echo "</script>";
-           $data1['BOOKING'] = $this->AM->getBooking();
-            $this->load->view('show_bookingall_view', $data1); 
-        } else {
-            echo "<script language=\"JavaScript\">";
-            echo "alert('ไม่สามารถบันทึกข้อมูลได้ค่ะเกิดข้อผิดพลาด')";
-            echo "</script>";
-            redirect('UserManagement_Con/admin_editbooking_view');
-        }
-        
-    }
+   
     
 }

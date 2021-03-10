@@ -19,7 +19,8 @@ class Admin_Model extends CI_Model
 	
 	function getBooking()
 	{
-		$this->db->select('*');
+		$this->db->select('*')
+		->join('slot_time', 'booking.ST_ID = slot_time.ST_ID', 'left');
 		$query = $this->db->get('booking');
 		return $query->result();
 	}

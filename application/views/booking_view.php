@@ -25,8 +25,6 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	foreach ($CUSTOMER as $row) {
 		echo form_hidden('C_ID', set_value('C_ID', $row->C_ID));
 	}
-	echo form_label('เลือกช่างตัดผม', 'B_ID') . nbs(2);
-	echo form_dropdown('B_ID', $BARBER, set_value('B_ID')) . br(2);
 
 	echo form_label('ปี', 'BK_Year') . nbs(2);
 	echo form_error('BK_Year','<span style="color:red;float:none;">','</span>');
@@ -41,6 +39,8 @@ defined('BASEPATH') or exit('No direct script access allowed');
 	echo form_label('เลือกช่วงเวลา', 'ST_ID') . nbs(2);
 	echo form_dropdown('ST_ID', $TIME_SLOT, set_value('ST_ID')) . br(2);
 
+	echo form_label('เลือกช่างตัดผม', 'B_ID') . nbs(2);
+	echo form_dropdown('B_ID', $BARBER, set_value('B_ID')) . br(2);
 
 	echo form_submit('btnBooking', 'จองคิว');
 	echo form_close();
